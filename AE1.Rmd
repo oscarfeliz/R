@@ -6,6 +6,7 @@ date: "2024-12-16"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(readr)
 ```
 
 ## R Markdown
@@ -28,16 +29,18 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-# Pregunta 1
+## Pregunta 1
 
-**Bold**
+1.  Es del tipo inferencial, a partir de una muestra que se recoge se quiere generalizar al total de los vehículos que van a circular.
+2.  Es un tipo exploratoria,se quiere relacionar un comportamiento por género y rango de edad.
+3.  Es predictiva y causal, dado que predice un comportamiento de un operador y la causa del porqué de los fallos.
+4.  Es exploratoria porque a partir de un historial de compras lo relaciona a algún grupo.
 
-## Pregunta 1 1.
+## Pregunta 2
 
-Es del **tipo** inferencial, a partir de una muestra que se recoge se quiere generalizar al total de los vehículos que van a circular.
+## part 3
 
-2\. Es un tipo exploratoria,se quiere relacionar un comportamiento por género y rango de edad.
-
-3\. Es causal o predictiva
-
-4\. Es predicitva
+```{r}
+epa_http <- read_table("~/Downloads/epa-http.csv", col_names = FALSE)
+nrow(epa_http)
+```

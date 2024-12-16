@@ -381,13 +381,47 @@ chunk like this:</p>
 code chunk to prevent printing of the R code that generated the
 plot.</p>
 </div>
-<div id="pregunta-1" class="section level1">
-<h1>Pregunta 1</h1>
-<p><strong>Bold</strong> Pregunta 1 1. Es del <strong>tipo</strong>
-inferencial, a partir de una muestra que se recoge se quiere generalizar
-al total de los vehículos que van a circular. 2. Es un tipo
-exploratoria,se quiere relacionar un comportamiento por género y rango
-de edad. 3. Es causal o predictiva 4. Es predicitva</p>
+<div id="pregunta-1" class="section level2">
+<h2>Pregunta 1</h2>
+<ol style="list-style-type: decimal">
+<li>Es del tipo inferencial, a partir de una muestra que se recoge se
+quiere generalizar al total de los vehículos que van a circular.</li>
+<li>Es un tipo exploratoria,se quiere relacionar un comportamiento por
+género y rango de edad.</li>
+<li>Es predictiva y causal, dado que predice un comportamiento de un
+operador y la causa del porqué de los fallos.</li>
+<li>Es exploratoria porque a partir de un historial de compras lo
+relaciona a algún grupo.</li>
+</ol>
+</div>
+<div id="pregunta-2" class="section level2">
+<h2>Pregunta 2</h2>
+</div>
+<div id="part-3" class="section level2">
+<h2>part 3</h2>
+<pre class="r"><code>epa_http &lt;- read_table(&quot;~/Downloads/epa-http.csv&quot;, col_names = FALSE)</code></pre>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   X1 = col_character(),
+##   X2 = col_character(),
+##   X3 = col_character(),
+##   X4 = col_character(),
+##   X5 = col_character(),
+##   X6 = col_double(),
+##   X7 = col_character()
+## )</code></pre>
+<pre><code>## Warning: 21 parsing failures.
+##  row col  expected    actual                       file
+## 7527  -- 7 columns 6 columns &#39;~/Downloads/epa-http.csv&#39;
+## 7528  -- 7 columns 6 columns &#39;~/Downloads/epa-http.csv&#39;
+## 7529  -- 7 columns 6 columns &#39;~/Downloads/epa-http.csv&#39;
+## 7549  -- 7 columns 6 columns &#39;~/Downloads/epa-http.csv&#39;
+## 7550  -- 7 columns 6 columns &#39;~/Downloads/epa-http.csv&#39;
+## .... ... ......... ......... ..........................
+## See problems(...) for more details.</code></pre>
+<pre class="r"><code>nrow(epa_http)</code></pre>
+<pre><code>## [1] 47748</code></pre>
 </div>
 
 
