@@ -31,16 +31,24 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 ## Pregunta 1
 
-1.  Es del tipo inferencial, a partir de una muestra que se recoge se quiere generalizar al total de los vehículos que van a circular.
-2.  Es un tipo exploratoria,se quiere relacionar un comportamiento por género y rango de edad.
-3.  Es predictiva y causal, dado que predice un comportamiento de un operador y la causa del porqué de los fallos.
+1.  Es del tipo descriptiva porque simplemente se preocupa de contar los datos sin buscar una relación entre ellos.
+2.  Es un tipo inferencial ya que quiere generalizar un comportamiento a partir de una muestra.
+3.  Es predictiva, dado quiere suponer el comportamiento del operador en el futuro.
 4.  Es exploratoria porque a partir de un historial de compras lo relaciona a algún grupo.
 
 ## Pregunta 2
 
-## part 3
+Lo primero que haría es revisar los ficheros de conexiones a servicios de cada usuario, de las vpn y de los servidores. Analizaría las horas en que se ha accedido y las direcciones de ip de origen y de destino, a través de los logs. Descartaría los usuarios que tienen privilegios o autorización para poder usar los servicios y compararía del resto a qué ip's autorizadas han accedido. Por último correlacionaría las ip's (o dominios) de servicios no autorizados con los usuarios que no tienes permisos para poder acceder y tendría una relación de los usuarios responsables.
+
+A partir de ahí los resultados se exportarían a un gráfico en el cual se mostraran las horas y números de conexiones a servicios no autorizados y cuál ha sido el total de usuarios responsables. Este gráfico podría abarcar un periodo mínimo de un año para tener un muestreo fiable.
+
+La forma de comunicarlo sería de forma totalmente anónima sin decir nombres de departamentos, cargos o categorías y explicando las posibles consucuencias y medidas que se podrían tomar al respecto para evitar que volviera a suceder en el futuro.
+
+### Pregunta 3
 
 ```{r}
 epa_http <- read_table("~/Downloads/epa-http.csv", col_names = FALSE)
+epa_http$X6 <- as.factor(epa_http$X6)
+colnames(epa_http) <- c("IP/address","FechaHora","Command","Page","Protocol","Mensaje","Response")
 nrow(epa_http)
 ```

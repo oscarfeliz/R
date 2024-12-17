@@ -384,33 +384,50 @@ plot.</p>
 <div id="pregunta-1" class="section level2">
 <h2>Pregunta 1</h2>
 <ol style="list-style-type: decimal">
-<li>Es del tipo inferencial, a partir de una muestra que se recoge se
-quiere generalizar al total de los vehículos que van a circular.</li>
-<li>Es un tipo exploratoria,se quiere relacionar un comportamiento por
-género y rango de edad.</li>
-<li>Es predictiva y causal, dado que predice un comportamiento de un
-operador y la causa del porqué de los fallos.</li>
+<li>Es del tipo descriptiva porque simplemente se preocupa de contar los
+datos sin buscar una relación entre ellos.</li>
+<li>Es un tipo inferencial ya que quiere generalizar un comportamiento a
+partir de una muestra.</li>
+<li>Es predictiva, dado quiere suponer el comportamiento del operador en
+el futuro.</li>
 <li>Es exploratoria porque a partir de un historial de compras lo
 relaciona a algún grupo.</li>
 </ol>
 </div>
 <div id="pregunta-2" class="section level2">
 <h2>Pregunta 2</h2>
-</div>
-<div id="part-3" class="section level2">
-<h2>part 3</h2>
-<pre class="r"><code>epa_http &lt;- read_table(&quot;~/Downloads/epa-http.csv&quot;, col_names = FALSE)</code></pre>
-<pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   X1 = col_character(),
-##   X2 = col_character(),
-##   X3 = col_character(),
-##   X4 = col_character(),
-##   X5 = col_character(),
-##   X6 = col_double(),
-##   X7 = col_character()
-## )</code></pre>
+<p>Lo primero que haría es revisar los ficheros de conexiones a
+servicios de cada usuario, de las vpn y de los servidores. Analizaría
+las horas en que se ha accedido y las direcciones de ip de origen y de
+destino, a través de los logs. Descartaría los usuarios que tienen
+privilegios o autorización para poder usar los servicios y compararía
+del resto a qué ip’s autorizadas han accedido. Por último
+correlacionaría las ip’s (o dominios) de servicios no autorizados con
+los usuarios que no tienes permisos para poder acceder y tendría una
+relación de los usuarios responsables.</p>
+<p>A partir de ahí los resultados se exportarían a un gráfico en el cual
+se mostraran las horas y números de conexiones a servicios no
+autorizados y cuál ha sido el total de usuarios responsables. Este
+gráfico podría abarcar un periodo mínimo de un año para tener un
+muestreo fiable.</p>
+<p>La forma de comunicarlo sería de forma totalmente anónima sin decir
+nombres de departamentos, cargos o categorías y explicando las posibles
+consucuencias y medidas que se podrían tomar al respecto para evitar que
+volviera a suceder en el futuro.</p>
+<div id="pregunta-3" class="section level3">
+<h3>Pregunta 3</h3>
+<pre class="r"><code>col_types&lt;- cols(
+  x1 = col_character(),
+  x2 = col_character(),
+  x3 = col_character(),
+  x4 = col_character(),
+  x5 = col_character(),
+  x6 = col_double(),
+  x7 = col_character()
+  )
+epa_http &lt;- read_table(&quot;~/Downloads/epa-http.csv&quot;, col_names = FALSE, col_types = col_types)</code></pre>
+<pre><code>## Warning: The following named parsers don&#39;t match the column names: x1, x2, x3,
+## x4, x5, x6, x7</code></pre>
 <pre><code>## Warning: 21 parsing failures.
 ##  row col  expected    actual                       file
 ## 7527  -- 7 columns 6 columns &#39;~/Downloads/epa-http.csv&#39;
@@ -422,6 +439,7 @@ relaciona a algún grupo.</li>
 ## See problems(...) for more details.</code></pre>
 <pre class="r"><code>nrow(epa_http)</code></pre>
 <pre><code>## [1] 47748</code></pre>
+</div>
 </div>
 
 
