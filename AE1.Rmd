@@ -4,30 +4,11 @@ output: html_document
 date: "2024-12-16"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(readr)
-```
+Óscar Feliz
 
-## R Markdown
+Bruno Sánchez
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Actividad Evaluable 1
 
 ## Pregunta 1
 
@@ -44,11 +25,98 @@ A partir de ahí los resultados se exportarían a un gráfico en el cual se most
 
 La forma de comunicarlo sería de forma totalmente anónima sin decir nombres de departamentos, cargos o categorías y explicando las posibles consucuencias y medidas que se podrían tomar al respecto para evitar que volviera a suceder en el futuro.
 
-### Pregunta 3
+### Librerías
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+```
+
+### Carga de la tabla
 
 ```{r}
-epa_http <- read_table("~/Downloads/epa-http.csv", col_names = FALSE)
+
+epa_http <- suppressWarnings(read_table("./epa-http.csv", col_names = FALSE))
+epa_http[] <- lapply(epa_http, function(x) gsub('"', '', x))
 epa_http$X6 <- as.factor(epa_http$X6)
-colnames(epa_http) <- c("IP/address","FechaHora","Command","Page","Protocol","Mensaje","Response")
-nrow(epa_http)
+epa_http$X7 <- as.numeric(epa_http$X7)
+
+colnames(epa_http) <- c("IP/address","FechaHora","Type","URL","Protocol","Mensaje","Response")
+head(epa_http)
+```
+
+### Pregunta 2.1
+
+1.  Cuales son las dimensiones del dataset cargado (número de filas y columnas)
+
+```{r}
+numero_columnas <- ncol(epa_http)
+numero_filas <- nrow(epa_http)
+
+cat("Número de columnas es", numero_columnas, "\n")
+cat("Número de filas es", numero_filas)
+```
+
+2.  Valor medio de la columna Bytes
+
+```{r}
+av_response <- mean(epa_http$Response, na.rm = TRUE)
+cat("El valor medio de la columna Bytes es de", av_response)
+```
+
+### Pregunta 2.2
+
+De las diferentes IPs de origen accediendo al servidor, ¿cuantas pertenecen a una IP claramente educativa (que contenga ".edu")?
+
+```{r}
+educativas <- sum(grepl(".edu", epa_http$`IP/address`))
+cat("Hay", educativas, "IPs de origen que pertenecen a una IP educativa.")
+```
+
+### Pregunta 2.3
+
+De todas las peticiones recibidas por el servidor cual es la hora en la que hay mayor volumen de peticiones HTTP de tipo "GET"?
+
+```{r}
+epa_http$DayHour <- substr(epa_http$FechaHora, 2, 6)  
+
+epa_http$DayHour <- as.factor(epa_http$DayHour)
+
+get_requests <- epa_http[epa_http$Type == "GET", ]
+
+ocurrencias_get_por_dayhour <- table(get_requests$DayHour)
+
+print(ocurrencias_get_por_dayhour)
+
+max_peticiones_dayhour <- names(ocurrencias_get_por_dayhour)[which.max(ocurrencias_get_por_dayhour)]
+
+cat("El día y hora con más peticiones GET es", max_peticiones_dayhour, "con",ocurrencias_get_por_dayhour[max_peticiones_dayhour], "peticiones." )
+```
+
+### Pregunta 2.4
+
+De las peticiones hechas por instituciones educativas (.edu), ¿Cuantos bytes en total se han transmitido, en peticiones de descarga de ficheros de texto ".txt"?
+
+```{r}
+total_bytes <- sum(epa_http$Response[grepl(".edu", epa_http$`IP/address`) & grepl(".txt$", epa_http$URL)], na.rm = TRUE)
+cat("Se han transmitido un total de", total_bytes, "bytes.")
+
+```
+
+### Pregunta 2.5
+
+Si separamos la petición en 3 partes (Tipo, URL, Protocolo), usando str_split y el separador " " (espacio), ¿cuantas peticiones buscan directamente la URL = "/"?
+
+```{r}
+peticiones_raiz <- sum(epa_http$URL == "/")
+cat("Se buscan exactamente", peticiones_raiz, "peticiones directamente la URL raiz.")
+```
+
+### Pregunta 2.6
+
+Aprovechando que hemos separado la petición en 3 partes (Tipo, URL, Protocolo) ¿Cuantas peticiones NO tienen como protocolo "HTTP/0.2"?
+
+```{r}
+peticiones_no_http02 <- sum(epa_http$Protocol != "HTTP/0.2")
+cat("Hay", peticiones_no_http02, "que no tienen como protocolo HTTP/0.2.")
 ```
