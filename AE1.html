@@ -355,22 +355,45 @@ display: none;
 </div>
 
 
-<p>Óscar Feliz</p>
-<p>Bruno Sánchez</p>
+<div id="óscar-feliz" class="section level3">
+<h3>Óscar Feliz</h3>
+</div>
+<div id="bruno-sánchez" class="section level3">
+<h3>Bruno Sánchez</h3>
+</div>
 <div id="actividad-evaluable-1" class="section level1">
 <h1>Actividad Evaluable 1</h1>
 <div id="pregunta-1" class="section level2">
 <h2>Pregunta 1</h2>
-<ol style="list-style-type: decimal">
-<li>Es del tipo descriptiva porque simplemente se preocupa de contar los
-datos sin buscar una relación entre ellos.</li>
-<li>Es un tipo inferencial ya que quiere generalizar un comportamiento a
-partir de una muestra.</li>
-<li>Es predictiva, dado quiere suponer el comportamiento del operador en
-el futuro.</li>
-<li>Es exploratoria porque a partir de un historial de compras lo
-relaciona a algún grupo.</li>
-</ol>
+<p><em>1. Dado un registro de vehículos que circulan por una autopista,
+disponemos de su marca y modelo, país de matriculación, y tipo de
+vehículo (por número de ruedas). Con tal de ajustar precios de los
+peajes ¿Cuántos vehículos tenemos por tipo? ¿Cuál es el tipo más
+frecuente? ¿De qué países tenemos más vehículos?</em></p>
+<p><strong>R:</strong> Es del tipo descriptiva porque simplemente se
+preocupa de contar los datos sin buscar una relación entre ellos.</p>
+<p><em>2. Dado un registro de visualizaciones de un servicio de
+video-on-demand, donde disponemos de los datos del usuario, de la
+película seleccionada, fecha de visualización y categoría de la
+película, queremos saber ¿Hay alguna preferencia en cuanto a género
+literario según los usuarios y su rango de edad?</em></p>
+<p><strong>R:</strong>Es un tipo inferencial ya que queremos generalizar
+un comportamiento a partir de una muestra.</p>
+<p><em>3. Dado un registro de peticiones a un sitio web, vemos que las
+peticiones que provienen de una red de telefonía concreta acostumbran a
+ser incorrectas y provocarnos errores de servicio. ¿Podemos determinar
+si en el futuro, los próximos mensajes de esa red seguirán dando
+problemas? ¿Hemos notado el mismo efecto en otras redes de
+telefonía?</em></p>
+<p><strong>R:</strong> Es predictiva, dado quiere suponer el
+comportamiento del operador en el futuro.</p>
+<p><em>4. Dado los registros de usuarios de un servicio de compras por
+internet, los usuarios pueden agruparse por preferencias de productos
+comprados. Queremos saber si ¿Es posible que, dado un usuario al azar y
+según su historial, pueda ser directamente asignado a un o diversos
+grupos?</em></p>
+<p><strong>R:</strong> Es exploratoria porque a partir de un historial
+de compras lo relaciona a algún grupo.</p>
 </div>
 <div id="pregunta-2" class="section level2">
 <h2>Pregunta 2</h2>
@@ -394,6 +417,8 @@ consucuencias y medidas que se podrían tomar al respecto para evitar que
 volviera a suceder en el futuro.</p>
 <div id="librerías" class="section level3">
 <h3>Librerías</h3>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+library(readr)</code></pre>
 </div>
 <div id="carga-de-la-tabla" class="section level3">
 <h3>Carga de la tabla</h3>
